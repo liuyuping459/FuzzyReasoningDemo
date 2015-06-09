@@ -1,0 +1,304 @@
+package com.sample.rules
+ 
+import com.sample.service.DroolsService;
+import com.sample.bean.Message;
+import com.sample.function.Values;
+import com.sample.function.Assistant;
+import java.util.HashMap;
+import java.util.Map;
+
+
+rule "0"
+	salience 1
+	no-loop false
+	when
+		$message0 : Message(a == 0)
+		$assistant : Assistant()
+	then
+		retract($message0);
+		for(Message message: $assistant.getMessageList()) {
+			insert(message);
+			//System.out.println("###");
+		}
+		$assistant.getMessageList().clear();
+end
+/*
+//规则1：if           纵裂纹
+//and 区域
+//and 较深裂纹
+//and 总是准确地在同一位置
+//then         结晶器在液面处受损
+rule "1"
+	salience 4
+	no-loop true
+    
+    when
+		$message1 : Message(a == 1)
+		$message9 : Message(a == 9)
+		$message10 : Message(a == 10)
+		$message11 : Message(a == 11)
+		$assistant : Assistant()
+    
+    then
+    	System.out.println(1);
+    			
+ 		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(1, 0.2);
+ 		factAndWeight.put(9, 0.2);
+ 		factAndWeight.put(10, 0.2);
+ 		factAndWeight.put(11, 0.4);
+ 		$assistant.inferenceOneStep(12, factAndWeight, 80);
+
+ 		insert(new Message(0));
+end
+
+//--------------------------------------------
+//规则2：if           结晶器在液面处受损
+//then         检修结晶器宽面出现裂纹的位置
+rule "2"
+	salience 4
+	no-loop true
+    
+    when
+		$message12 : Message(a == 12)
+		$assistant : Assistant()
+
+    then
+    	System.out.println(2);
+
+ 		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(12, 1.0);
+ 		$assistant.inferenceOneStep(13, factAndWeight, 80);
+
+ 		insert(new Message(0));
+end
+*/
+//--------------------------------------------
+//规则3：if           纵裂纹
+//and 区域
+//and 较深裂纹
+//and 总是出现在宽侧中间
+//and 厚板坯
+//then         结晶器冷却不均匀
+rule "3"
+	salience 4
+	no-loop true
+    
+    when
+    	$message1 : Message(a == 1)
+    	$message9 : Message(a == 9)
+    	$message10 : Message(a == 10)
+    	$message14 : Message(a == 14)
+    	$message15 : Message(a == 15)
+    	$assistant : Assistant()
+    	
+    then
+    	System.out.println(3);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(1, 0.2);
+ 		factAndWeight.put(9, 0.2);
+ 		factAndWeight.put(10, 0.2);
+ 		factAndWeight.put(14, 0.2);
+ 		factAndWeight.put(15, 0.2);
+ 		$assistant.inferenceOneStep(16, factAndWeight, 80);
+
+ 		insert(new Message(0));
+end
+
+//--------------------------------------------
+//规则4：if           结晶器冷却不均匀
+//then         调整SEN与结晶器壁之间的距离
+rule "4"
+	salience 4
+	no-loop true
+	
+    when
+		$message16 : Message(a == 16)
+		$assistant : Assistant()
+    
+    then
+    	System.out.println(4);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(16, 1.0);
+ 		$assistant.inferenceOneStep(17, factAndWeight, 80);
+
+ 		insert(new Message(0));
+end
+
+rule "5"
+	salience 4
+	no-loop true
+	
+    when
+		$message2 : Message(a == 2)
+		$assistant : Assistant()
+    
+    then
+    	System.out.println(5);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(2, 1.0);
+ 		$assistant.inferenceOneStep(17, factAndWeight, 80);
+
+ 		insert(new Message(0));
+end
+
+rule "6"
+	salience 4
+	no-loop true
+    
+    when
+    	$message13 : Message(a == 13)
+    	$message17 : Message(a == 17)
+    	$message12 : Message(a == 12)
+    	$assistant : Assistant()
+    
+    then
+    	System.out.println(6);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(12, 0.2);
+ 		factAndWeight.put(13, 0.4);
+ 		factAndWeight.put(17, 0.4);
+ 		$assistant.inferenceOneStep(18, factAndWeight, 80);
+
+ 		insert(new Message(0));
+end
+
+rule "7"
+	salience 4
+	no-loop true
+    
+    when
+    	$message10 : Message(a == 10)
+    	$message15 : Message(a == 15)
+    	$assistant : Assistant()
+    
+    then
+    	System.out.println(7);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(10, 0.6);
+ 		factAndWeight.put(15, 0.4);
+ 		$assistant.inferenceOneStep(26, factAndWeight, 80);
+
+ 		insert(new Message(0));
+end
+
+rule "8"
+	salience 4
+	no-loop true
+    
+    when
+    	$message10 : Message(a == 10)
+    	$message15 : Message(a == 15)
+    	$message26 : Message(a == 26)
+    	$assistant : Assistant()
+    
+    then
+    	System.out.println(8);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(10, 0.4);
+ 		factAndWeight.put(15, 0.6);
+ 		$assistant.inferenceOneStep(27, factAndWeight, 80);
+
+ 		insert(new Message(0));
+end
+
+rule "9"
+	salience 4
+	no-loop true
+    
+    when
+    	$message10 : Message(a == 10)
+    	$message19 : Message(a == 19)
+    	$assistant : Assistant()
+    
+    then
+    	System.out.println(9);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(10, 0.6);
+ 		factAndWeight.put(19, 0.4);
+ 		$assistant.inferenceOneStep(27, factAndWeight, 80);
+
+ 		insert(new Message(0));
+end
+
+rule "10"
+	salience 4
+	no-loop true
+    
+    when
+    	$message19 : Message(a == 19)
+    	$assistant : Assistant()
+    
+    then
+    	System.out.println(10);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(19, 1.0);
+ 		$assistant.inferenceOneStep(29, factAndWeight, 80);
+
+ 		insert(new Message(0));
+end
+
+rule "11"
+	salience 4
+	no-loop true
+    
+    when
+    	$message19 : Message(a == 19)
+    	$assistant : Assistant()
+    
+    then
+    	System.out.println(11);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(19, 1.0);
+ 		$assistant.inferenceOneStep(30, factAndWeight, 80);
+
+ 		insert(new Message(0));
+end
+
+rule "12"
+	salience 4
+	no-loop true
+    
+    when
+    	$message19 : Message(a == 19)
+    	$assistant : Assistant()
+    
+    then
+    	System.out.println(7);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(19, 1.0);
+ 		$assistant.inferenceOneStep(31, factAndWeight, 80);
+
+ 		insert(new Message(0));
+end
+
+rule "13"
+	salience 4
+	no-loop true
+    
+    when
+    	$message21 : Message(a == 21)
+    	$assistant : Assistant()
+    
+    then
+    	System.out.println(13);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(21, 1.0);
+ 		$assistant.inferenceOneStep(32, factAndWeight, 80);
+
+ 		insert(new Message(0));
+end
+
+
+//--------------------------------------------
