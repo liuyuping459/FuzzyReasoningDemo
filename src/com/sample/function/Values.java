@@ -3,6 +3,11 @@ package com.sample.function;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * simulate dataBase
+ * @author liu
+ *
+ */
 public class Values {
 	
 	private static Map<Integer, NameAndReliability> nameMap = 
@@ -12,6 +17,13 @@ public class Values {
 		return nameMap.get(num).name;
 	}
 	
+	public static Double getRelibility(Integer num) {
+		return Double.valueOf(nameMap.get(num).relibility) / 100.0;
+	}
+	
+	public static String getName(Integer num) {
+		return nameMap.get(num).name;
+	}
 	
 	static {
 		nameMap.put(1, new Values().new NameAndReliability("responsibility", "82"));

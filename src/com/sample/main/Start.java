@@ -3,66 +3,88 @@ package com.sample.main;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import com.sample.bean.Message;
 import com.sample.function.Values;
 import com.sample.service.DroolsService;
 import com.sample.service.ksessionThread;
 
+/**
+ * start the reasoning
+ * @author liu
+ * include program main entrance and some method for display
+ */
 public class Start {
 
+	static int maxFactNum = 16;
 	/**
 	 * main
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		show();
+		start();
 	}
 
-	public static void show() {
+	public static void start() {
 		Set<Message> set = new HashSet<Message>();
-		Message m1 = new Message(1, 0.9);
-		Message m9 = new Message(9, 0.9);
-		Message m10 = new Message(10, 0.9);
-		Message m11 = new Message(11, 0.9);
-		Message m14 = new Message(14, 0.9);
-		Message m15 = new Message(15, 0.9);
-		Message m3 = new Message(3, 0.9);
-		Message m4 = new Message(4, 0.9);
-		Message m5 = new Message(5, 0.9);
-		Message m6 = new Message(6, 0.9);
-		Message m7 = new Message(7, 0.9);
-		Message m8 = new Message(8, 0.9);
-		set.add(m1);
-		set.add(m9);
-		set.add(m10);
-		set.add(m11);
-		set.add(m14);
-		set.add(m15);
-		set.add(m3);
-		set.add(m4);
-		set.add(m5);
-		set.add(m6);
-		set.add(m7);
-		set.add(m8);
-		
 		DroolsService droolsService = new DroolsService();
-		
 		ksessionThread kThread = new ksessionThread(droolsService);
 		
 		new Thread(kThread).start();
-		int choseNum = 1;
+		boolean endFlag = true;
+		
 		while (true) {
+			showFact();
 			Scanner scanner=new Scanner(System.in); 
-			int num=scanner.nextInt();
+			
+			while (endFlag) {
+				Integer num = 0;
+				String str=scanner.nextLine();
+				Pattern pattern = Pattern.compile("[0-9]*");
+				if (!pattern.matcher(str).matches() || (num = Integer.valueOf(str)) > Start.maxFactNum) {
+					System.out.println("please input fact's num");
+					continue;
+				} else if (0 == num) {
+					System.out.println();
+					System.out.println("reasoning chain:");
+					break;
+				} else {
+					Message message = new Message(num, Values.getRelibility(num));
+					set.add(message);
+				}
+			}
+			
 			long startTime = System.currentTimeMillis();
 			droolsService.startDrools(set);
-			System.out.println("reasoning use (" + (System.currentTimeMillis() - startTime) + "ms)");
+			set.clear();
+			System.out.println();
+			System.out.println("# reasoning use (" + (System.currentTimeMillis() - startTime) + "ms)");
+			
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	private static void showFact() {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 1; i < 9; i++) {
+			sb.append(i + ". ");
+			sb.append(Values.getName(i));
+			sb.append(" ; ");
+		}
+		System.out.println(sb);
+		sb.delete(0, sb.length());
+		
+		for (int i = 9; i < (Start.maxFactNum + 1); i++) {
+			sb.append(i + ". ");
+			sb.append(Values.getName(i));
+			sb.append(" ; ");
+		}
+		sb.delete(sb.length() - 3, sb.length() - 1);
+		System.out.println(sb);
 	}
 }

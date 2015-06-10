@@ -18,7 +18,9 @@ import com.sample.function.Values;
 import com.sample.bean.Message;
 
 /**
- * This is a sample class to launch a rule.
+ * This is a sample class to launch the drools engine.
+ * @author liu
+ *
  */
 public class DroolsService {
 	private boolean flag = true;
@@ -63,11 +65,11 @@ public class DroolsService {
 		}
     	try {
             for (Message message : set) {
-            	ksession.insert(message);			//插入对象
+            	ksession.insert(message);	//insert the facts
             	assistant.getReliabilityMap().put(message.isA(), message.getR());
 			}
-            ksession.insert(assistant);			//插入对象
-            ksession.fireAllRules();			//开始执行规则引擎
+            ksession.insert(assistant);		//insert the assistant object for record reasoning chain
+            ksession.fireAllRules();		//fire rules
         } catch (Throwable t) {
             t.printStackTrace();
         }
@@ -78,6 +80,9 @@ public class DroolsService {
 		flag = true;
     }
 
+    /**
+     * display reasoning chain on console
+     */
 	public void showTree() {
 		java.text.DecimalFormat df = new java.text.DecimalFormat("#00.00%");
 		for (Integer integer : assistant.getConclusionSet()) {

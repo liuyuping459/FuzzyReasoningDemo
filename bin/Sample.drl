@@ -34,20 +34,20 @@ rule "1"
     
     when
 		$message1 : Message(a == 1)
-		$message9 : Message(a == 9)
-		$message10 : Message(a == 10)
-		$message11 : Message(a == 11)
+		$message9 : Message(a == 2)
+		$message10 : Message(a == 3)
+		$message11 : Message(a == 4)
 		$assistant : Assistant()
     
     then
-    	System.out.println(1);
+    	//System.out.println(1);
     			
  		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
  		factAndWeight.put(1, 0.2);
- 		factAndWeight.put(9, 0.2);
- 		factAndWeight.put(10, 0.2);
- 		factAndWeight.put(11, 0.4);
- 		$assistant.inferenceOneStep(12, factAndWeight, 80);
+ 		factAndWeight.put(2, 0.2);
+ 		factAndWeight.put(3, 0.2);
+ 		factAndWeight.put(4, 0.4);
+ 		$assistant.inferenceOneStep(12, factAndWeight, 70);
 
  		insert(new Message(0));
 end
@@ -64,11 +64,11 @@ rule "2"
 		$assistant : Assistant()
 
     then
-    	System.out.println(2);
+    	//System.out.println(2);
 
  		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
  		factAndWeight.put(12, 1.0);
- 		$assistant.inferenceOneStep(13, factAndWeight, 80);
+ 		$assistant.inferenceOneStep(13, factAndWeight, 90);
 
  		insert(new Message(0));
 end
@@ -86,22 +86,22 @@ rule "3"
     
     when
     	$message1 : Message(a == 1)
-    	$message9 : Message(a == 9)
-    	$message10 : Message(a == 10)
-    	$message14 : Message(a == 14)
-    	$message15 : Message(a == 15)
+    	$message9 : Message(a == 2)
+    	$message10 : Message(a == 3)
+    	$message14 : Message(a == 4)
+    	$message15 : Message(a == 5)
     	$assistant : Assistant()
     	
     then
-    	System.out.println(3);
+    	//System.out.println(3);
 
 		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
  		factAndWeight.put(1, 0.2);
- 		factAndWeight.put(9, 0.2);
- 		factAndWeight.put(10, 0.2);
- 		factAndWeight.put(14, 0.2);
- 		factAndWeight.put(15, 0.2);
- 		$assistant.inferenceOneStep(16, factAndWeight, 80);
+ 		factAndWeight.put(2, 0.2);
+ 		factAndWeight.put(3, 0.2);
+ 		factAndWeight.put(4, 0.2);
+ 		factAndWeight.put(5, 0.2);
+ 		$assistant.inferenceOneStep(16, factAndWeight, 93);
 
  		insert(new Message(0));
 end
@@ -118,11 +118,11 @@ rule "4"
 		$assistant : Assistant()
     
     then
-    	System.out.println(4);
+    	//System.out.println(4);
 
 		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
  		factAndWeight.put(16, 1.0);
- 		$assistant.inferenceOneStep(17, factAndWeight, 80);
+ 		$assistant.inferenceOneStep(17, factAndWeight, 90);
 
  		insert(new Message(0));
 end
@@ -136,11 +136,11 @@ rule "5"
 		$assistant : Assistant()
     
     then
-    	System.out.println(5);
+    	//System.out.println(5);
 
 		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
  		factAndWeight.put(2, 1.0);
- 		$assistant.inferenceOneStep(17, factAndWeight, 80);
+ 		$assistant.inferenceOneStep(17, factAndWeight, 90);
 
  		insert(new Message(0));
 end
@@ -150,19 +150,19 @@ rule "6"
 	no-loop true
     
     when
-    	$message13 : Message(a == 13)
-    	$message17 : Message(a == 17)
-    	$message12 : Message(a == 12)
+    	$message13 : Message(a == 3)
+    	$message17 : Message(a == 7)
+    	$message12 : Message(a == 2)
     	$assistant : Assistant()
     
     then
-    	System.out.println(6);
+    	//System.out.println(6);
 
 		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
- 		factAndWeight.put(12, 0.2);
- 		factAndWeight.put(13, 0.4);
- 		factAndWeight.put(17, 0.4);
- 		$assistant.inferenceOneStep(18, factAndWeight, 80);
+ 		factAndWeight.put(2, 0.2);
+ 		factAndWeight.put(3, 0.4);
+ 		factAndWeight.put(7, 0.4);
+ 		$assistant.inferenceOneStep(18, factAndWeight, 90);
 
  		insert(new Message(0));
 end
@@ -182,7 +182,7 @@ rule "7"
 		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
  		factAndWeight.put(10, 0.6);
  		factAndWeight.put(15, 0.4);
- 		$assistant.inferenceOneStep(26, factAndWeight, 80);
+ 		$assistant.inferenceOneStep(26, factAndWeight, 95);
 
  		insert(new Message(0));
 end
@@ -194,16 +194,15 @@ rule "8"
     when
     	$message10 : Message(a == 10)
     	$message15 : Message(a == 15)
-    	$message26 : Message(a == 26)
     	$assistant : Assistant()
     
     then
-    	System.out.println(8);
+    	//System.out.println(8);
 
 		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
  		factAndWeight.put(10, 0.4);
  		factAndWeight.put(15, 0.6);
- 		$assistant.inferenceOneStep(27, factAndWeight, 80);
+ 		$assistant.inferenceOneStep(27, factAndWeight, 82);
 
  		insert(new Message(0));
 end
@@ -218,12 +217,12 @@ rule "9"
     	$assistant : Assistant()
     
     then
-    	System.out.println(9);
+    	//System.out.println(9);
 
 		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
  		factAndWeight.put(10, 0.6);
  		factAndWeight.put(19, 0.4);
- 		$assistant.inferenceOneStep(27, factAndWeight, 80);
+ 		$assistant.inferenceOneStep(27, factAndWeight, 87);
 
  		insert(new Message(0));
 end
@@ -237,11 +236,11 @@ rule "10"
     	$assistant : Assistant()
     
     then
-    	System.out.println(10);
+    	//System.out.println(10);
 
 		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
  		factAndWeight.put(19, 1.0);
- 		$assistant.inferenceOneStep(29, factAndWeight, 80);
+ 		$assistant.inferenceOneStep(29, factAndWeight, 85);
 
  		insert(new Message(0));
 end
@@ -255,11 +254,11 @@ rule "11"
     	$assistant : Assistant()
     
     then
-    	System.out.println(11);
+    	//System.out.println(11);
 
 		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
  		factAndWeight.put(19, 1.0);
- 		$assistant.inferenceOneStep(30, factAndWeight, 80);
+ 		$assistant.inferenceOneStep(30, factAndWeight, 85);
 
  		insert(new Message(0));
 end
@@ -273,11 +272,11 @@ rule "12"
     	$assistant : Assistant()
     
     then
-    	System.out.println(7);
+    	//System.out.println(7);
 
 		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
  		factAndWeight.put(19, 1.0);
- 		$assistant.inferenceOneStep(31, factAndWeight, 80);
+ 		$assistant.inferenceOneStep(31, factAndWeight, 85);
 
  		insert(new Message(0));
 end
@@ -291,11 +290,119 @@ rule "13"
     	$assistant : Assistant()
     
     then
-    	System.out.println(13);
+    	//System.out.println(13);
 
 		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
  		factAndWeight.put(21, 1.0);
  		$assistant.inferenceOneStep(32, factAndWeight, 80);
+
+ 		insert(new Message(0));
+end
+
+rule "14"
+	salience 4
+	no-loop true
+    
+    when
+    	$message21 : Message(a == 1)
+    	$assistant : Assistant()
+    
+    then
+    	//System.out.println(14);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(1, 1.0);
+ 		$assistant.inferenceOneStep(32, factAndWeight, 89);
+
+ 		insert(new Message(0));
+end
+
+rule "15"
+	salience 4
+	no-loop true
+    
+    when
+    	$message21 : Message(a == 2)
+    	$assistant : Assistant()
+    
+    then
+    	//System.out.println(13);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(2, 1.0);
+ 		$assistant.inferenceOneStep(32, factAndWeight, 82);
+
+ 		insert(new Message(0));
+end
+
+rule "16"
+	salience 4
+	no-loop true
+    
+    when
+    	$message21 : Message(a == 3)
+    	$assistant : Assistant()
+    
+    then
+    	//System.out.println(16);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(3, 1.0);
+ 		$assistant.inferenceOneStep(8, factAndWeight, 88);
+
+ 		insert(new Message(0));
+end
+
+rule "17"
+	salience 4
+	no-loop true
+    
+    when
+    	$message21 : Message(a == 7)
+    	$assistant : Assistant()
+    
+    then
+    	//System.out.println(16);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(7, 1.0);
+ 		$assistant.inferenceOneStep(19, factAndWeight, 86);
+
+ 		insert(new Message(0));
+end
+
+rule "18"
+	salience 4
+	no-loop true
+    
+    when
+    	$message21 : Message(a == 6)
+    	$assistant : Assistant()
+    
+    then
+    	//System.out.println(16);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(6, 1.0);
+ 		$assistant.inferenceOneStep(7, factAndWeight, 84);
+
+ 		insert(new Message(0));
+end
+
+rule "19"
+	salience 4
+	no-loop true
+    
+    when
+    	$message21 : Message(a == 8)
+    	$assistant : Assistant()
+    
+    then
+    	//System.out.println(19);
+
+		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
+ 		factAndWeight.put(8, 1.0);
+ 		$assistant.inferenceOneStep(19, factAndWeight, 84);
 
  		insert(new Message(0));
 end
