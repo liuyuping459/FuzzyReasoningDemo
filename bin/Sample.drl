@@ -22,12 +22,7 @@ rule "0"
 		}
 		$assistant.getMessageList().clear();
 end
-/*
-//规则1：if           纵裂纹
-//and 区域
-//and 较深裂纹
-//and 总是准确地在同一位置
-//then         结晶器在液面处受损
+
 rule "1"
 	salience 4
 	no-loop true
@@ -52,9 +47,6 @@ rule "1"
  		insert(new Message(0));
 end
 
-//--------------------------------------------
-//规则2：if           结晶器在液面处受损
-//then         检修结晶器宽面出现裂纹的位置
 rule "2"
 	salience 4
 	no-loop true
@@ -72,14 +64,7 @@ rule "2"
 
  		insert(new Message(0));
 end
-*/
-//--------------------------------------------
-//规则3：if           纵裂纹
-//and 区域
-//and 较深裂纹
-//and 总是出现在宽侧中间
-//and 厚板坯
-//then         结晶器冷却不均匀
+
 rule "3"
 	salience 4
 	no-loop true
@@ -106,9 +91,6 @@ rule "3"
  		insert(new Message(0));
 end
 
-//--------------------------------------------
-//规则4：if           结晶器冷却不均匀
-//then         调整SEN与结晶器壁之间的距离
 rule "4"
 	salience 4
 	no-loop true
