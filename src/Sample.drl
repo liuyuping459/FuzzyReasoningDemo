@@ -159,7 +159,7 @@ rule "7"
     	$assistant : Assistant()
     
     then
-    	System.out.println(7);
+    	//System.out.println(7);
 
 		Map<Integer, Double> factAndWeight = new HashMap<Integer, Double>();
  		factAndWeight.put(10, 0.6);
